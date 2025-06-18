@@ -2,7 +2,7 @@ apiVersion: v2
 name: process-exporter
 description: A Helm chart for process-exporter
 type: application
-version: 1.0.0
+version: 1.0.1
 appVersion: 0.8.5
 home: https://github.com/kir4h/charts/tree/master/charts/process-exporter
 dependencies:

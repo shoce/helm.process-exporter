@@ -102,3 +102,7 @@ serviceMonitor:
 ## @param serviceAccount.create Specifies whether a ServiceAccount should be created
 serviceAccount:
   create: true
+
+## @param securityContext Process exporter privilege and access control settings for the container
+## ref: https://kubernetes.io/docs/concepts/security/pod-security-standards/
+securityContext: {}

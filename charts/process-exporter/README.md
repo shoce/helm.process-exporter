@@ -59,6 +59,7 @@ Helm Chart for [process exporter](https://github.com/ncabatoff/process-exporter)
 
 ### Other
 
-| Name                    | Description                                          | Value  |
-| ----------------------- | ---------------------------------------------------- | ------ |
-| `serviceAccount.create` | Specifies whether a ServiceAccount should be created | `true` |
+| Name                    | Description                                                              | Value  |
+| ----------------------- | ------------------------------------------------------------------------ | ------ |
+| `serviceAccount.create` | Specifies whether a ServiceAccount should be created                     | `true` |
+| `securityContext`       | Process exporter privilege and access control settings for the container | `{}`   |
