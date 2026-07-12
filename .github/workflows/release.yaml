@@ -1,5 +1,9 @@
 
-name: Release Charts
+name: helm
+
+permissions:
+  contents: "write"
+  packages: "write"
 
 on:
   push:
@@ -7,9 +11,14 @@ on:
       - master
 
 jobs:
+
   release:
+  
     runs-on: ubuntu-latest
     steps:
+    
+      - uses: "shoce/action-version@v1"
+      
       - name: Checkout
         uses: actions/checkout@v7
         with:
@@ -19,20 +28,15 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Install Helm
-        # https://github.com/azure/setup-helm
-        uses: azure/setup-helm@v5
+         
+      # https://github.com/bsord/helm-push
+      - uses: "bsord/helm-push@v4"
         with:
-          version: v3.21.3
+          useOCIRegistry: true
+          registry-url:  "oci://ghcr.io/${{github.repository}}"
+          username: "${{github.repository_owner}}"
+          access-token: "${{secrets.GITHUB_TOKEN}}"
+          force: true
+          chart-folder: "helm"
 
-      - name: Run chart-releaser
-        # https://github.com/helm/chart-releaser-action
-        uses: helm/chart-releaser-action@v1
-        with:
-          charts_dir: charts
-          config: cr.yaml
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          
-          
+
