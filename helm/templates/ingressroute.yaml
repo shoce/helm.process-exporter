@@ -27,15 +27,13 @@ metadata:
   name: "{{$.Release.Name}}"
   namespace: "{{$.Release.Namespace}}"
 spec:
-  entryPoints:
-    - "websecure"
   routes:
     - kind: "Rule"
       match: "Host(`{{$.Values.ingressroute.host}}`)"
       middlewares:
         - name: "{{$.Release.Name}}-basicauth"
       services:
-        - name: "metrics"
+        - name: {{ include "process-exporter.fullname" . }}
           port: {{$.Values.service.port}}
 
 {{ end }}
