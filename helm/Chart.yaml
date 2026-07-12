@@ -1,15 +1,15 @@
-apiVersion: v2
-name: process-exporter
-description: A Helm chart for process-exporter
-type: application
-version: 1.0.1
-appVersion: 0.8.5
-home: https://github.com/shoce/helm.process-exporter/tree/master/helm
+apiVersion: "v2"
+name: "process-exporter"
+description: "A Helm chart for process-exporter"
+type: "application"
+version: "__VERSION__"
+appVersion: "0.8.5"
+home: "https://github.com/shoce/helm.process-exporter/tree/master/helm"
 keywords:
-  - prometheus
-  - exporter
+  - "prometheus"
+  - "exporter"
 sources:
-  - https://github.com/shoce/process-exporter
+  - "https://github.com/shoce/process-exporter"
 maintainers:
-  - name: shoce
+  - name: "shoce"
 
