@@ -15,3 +15,5 @@ spec:
       port: {{ .Values.service.port }}
       targetPort: metrics
   type: {{ .Values.service.type }}
+  
+
