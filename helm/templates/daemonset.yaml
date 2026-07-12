@@ -27,9 +27,6 @@ spec:
             - --config.path=/etc/process-exporter/config.yaml
             - "--web.listen-address=0.0.0.0:{{ .Values.service.port }}"
             - "--threads={{ .Values.config.threads }}"
-            {{- if .Values.extraArgs }}
-            {{- include "common.tplvalues.render" (dict "value" .Values.extraArgs "context" $) | nindent 12 }}
-            {{- end }}
           ports:
             - containerPort: {{ .Values.service.port }}
               name: metrics

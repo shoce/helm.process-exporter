@@ -105,3 +105,12 @@ serviceAccount:
 ## @param securityContext Process exporter privilege and access control settings for the container
 ## ref: https://kubernetes.io/docs/concepts/security/pod-security-standards/
 securityContext: {}
+
+ingressroute:
+  enabled: false
+  host: "process-exporter.example.com"
+  basicauth:
+    user: "admin"
+    pass: "admin"
+    
+    
