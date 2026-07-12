@@ -15,7 +15,7 @@ extraDeploy: []
 image:
   registry: "ghcr.io"
   repository: "shoce/process-exporter"
-  tag: "26.712.2053"
+  tag: "26.712.2002"
   pullPolicy: "IfNotPresent"
 ## @param resources Set container requests and limits for different resources like CPU or memory
 ## Example:
