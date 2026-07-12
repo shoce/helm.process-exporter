@@ -1,20 +1,23 @@
+
 name: Lint and Test Charts
 
 on: pull_request
 
 jobs:
+
   detect-changes:
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.set-output.outputs.changed }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.7.0
+        # https://github.com/helm/chart-testing-action
+        uses: helm/chart-testing-action@v2
 
       - name: Run chart-testing (list-changed)
         id: set-output
@@ -26,36 +29,41 @@ jobs:
           else
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
+          
   lint-test:
     needs: detect-changes
     if: needs.detect-changes.outputs.changed == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Set up Helm
-        uses: azure/setup-helm@v4.3.0
+        # https://github.com/azure/setup-helm
+        uses: azure/setup-helm@v5
         with:
-          version: v3.17.1
+          version: v3.21.3
 
       # Python is required because `ct lint` runs Yamale (https://github.com/23andMe/Yamale) and
       # yamllint (https://github.com/adrienverge/yamllint) which require Python
       - name: Set up Python
-        uses: actions/setup-python@v2
+        # https://github.com/actions/setup-python
+        uses: actions/setup-python@v6
         with:
           python-version: 3.8
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.7.0
+        # https://github.com/helm/chart-testing-action
+        uses: helm/chart-testing-action@v2
 
       - name: Run chart-testing (lint)
         run: ct lint --config ct.yaml
 
       - name: Create kind cluster
-        uses: helm/kind-action@v1.12.0
+        # https://github.com/helm/kind-action
+        uses: helm/kind-action@v1
 
       - name: Deploy Prometheus Operator CRDs
         run: |
@@ -76,3 +84,5 @@ jobs:
 
       - name: Run chart-testing (install)
         run: ct install --config ct.yaml
+        
+        

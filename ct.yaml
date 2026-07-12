@@ -1,6 +1,6 @@
 # See https://github.com/helm/chart-testing#configuration
 remote: origin
 chart-dirs:
-  - charts
+  - helm
 target-branch: master
 helm-extra-args: --timeout 600s

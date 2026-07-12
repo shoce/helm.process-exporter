@@ -1,3 +1,4 @@
+
 name: Release Charts
 
 on:
@@ -10,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -20,14 +21,18 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Install Helm
-        uses: azure/setup-helm@v4.3.0
+        # https://github.com/azure/setup-helm
+        uses: azure/setup-helm@v5
         with:
-          version: v3.17.1
+          version: v3.21.3
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
+        # https://github.com/helm/chart-releaser-action
+        uses: helm/chart-releaser-action@v1
         with:
           charts_dir: charts
           config: cr.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          
+          
