@@ -4,18 +4,12 @@ description: A Helm chart for process-exporter
 type: application
 version: 1.0.1
 appVersion: 0.8.5
-home: https://github.com/kir4h/charts/tree/master/charts/process-exporter
-dependencies:
-  - name: common
-    repository: oci://registry-1.docker.io/bitnamicharts
-    tags:
-      - bitnami-common
-    version: 2.x.x
+home: https://github.com/shoce/helm.process-exporter/tree/master/helm
 keywords:
   - prometheus
   - exporter
 sources:
-  - https://github.com/ncabatoff/process-exporter
+  - https://github.com/shoce/process-exporter
 maintainers:
-  - name: kir4h
-    email: 1671935+kir4h@users.noreply.github.com
+  - name: shoce
+

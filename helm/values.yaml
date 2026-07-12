@@ -13,10 +13,9 @@ extraDeploy: []
 ## @param image.digest Image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Process exporter image pull policy
 image:
-  registry: docker.io
-  repository: ncabatoff/process-exporter
+  registry: ghcr.io
+  repository: shoce/process-exporter
   tag: ""
-  digest: "sha256:6f0549dc24e97a51a3a3524271082cfa2f44352d96fd6a038bfa00659470639a"  # 0.8.5
   pullPolicy: IfNotPresent
 ## @param resources Set container requests and limits for different resources like CPU or memory
 ## Example:
@@ -30,7 +29,7 @@ image:
 ##
 
 ## @param config.threads specifies if metrics will be broken down by thread name as well as group name.
-## @param config.nameMatchers [array] Check [configuration and group naming](https://github.com/ncabatoff/process-exporter/tree/master?tab=readme-ov-file#configuration-and-group-naming)
+## @param config.nameMatchers [array] Check [configuration and group naming](https://github.com/shoce/process-exporter/tree/master?tab=readme-ov-file#configuration-and-group-naming)
 config:
   threads: false
   nameMatchers:
