@@ -4,8 +4,8 @@
 apiVersion: "v1"
 kind: "Secret"
 metadata:
-  name: "process-exporter-{{$.Values.EnvName}}-basicauth"
-  namespace: "{{$.Values.Namespace}}"
+  name: "{{$.Release.Name}}-basicauth"
+  namespace: "{{$.Release.Namespace}}"
 type: "Opaque"
 data:
   users: "{{ htpasswd $.Values.ingressroute.basicauth.user $.Values.ingressroute.basicauth.pass | b64enc }}"
@@ -14,17 +14,17 @@ data:
 apiVersion: "traefik.io/v1alpha1"
 kind: "Middleware"
 metadata:
-  name: "process-exporter-{{$.Values.EnvName}}-basicauth"
+  name: "{{$.Release.Name}}-basicauth"
   namespace: "{{$.Release.Namespace}}"
 spec:
   basicAuth:
-    secret: "process-exporter-{{$.Values.EnvName}}-basicauth"
+    secret: "{{$.Release.Name}}-basicauth"
 
 ---
 apiVersion: "traefik.io/v1alpha1"
 kind: "IngressRoute"
 metadata:
-  name: "process-exporter-{{$.Values.EnvName}}"
+  name: "{{$.Release.Name}}"
   namespace: "{{$.Release.Namespace}}"
 spec:
   entryPoints:
@@ -33,7 +33,7 @@ spec:
     - kind: "Rule"
       match: "Host(`{{$.Values.ingressroute.host}}`)"
       middlewares:
-        - name: "process-exporter-{{$.Values.EnvName}}-basicauth"
+        - name: "{{$.Release.Name}}-basicauth"
       services:
         - name: "metrics"
           port: {{$.Values.service.port}}
