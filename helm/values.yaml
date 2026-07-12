@@ -13,10 +13,10 @@ extraDeploy: []
 ## @param image.digest Image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
 ## @param image.pullPolicy Process exporter image pull policy
 image:
-  registry: ghcr.io
-  repository: shoce/process-exporter
-  tag: ""
-  pullPolicy: IfNotPresent
+  registry: "ghcr.io"
+  repository: "shoce/process-exporter"
+  tag: "26.712.2053"
+  pullPolicy: "IfNotPresent"
 ## @param resources Set container requests and limits for different resources like CPU or memory
 ## Example:
 ## resources:

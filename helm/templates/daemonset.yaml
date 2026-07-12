@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: process-exporter
-          image: "{{- include "common.images.image" ( dict "imageRoot" .Values.image "chart" .Chart) -}}"
+          image: "{{with .Values.image}}{{.registry}}/{{.repository}}:{{.tag}}{{end}}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - --procfs=/host/proc
