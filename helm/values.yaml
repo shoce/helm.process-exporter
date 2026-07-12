@@ -90,7 +90,7 @@ service:
 ## @param serviceMonitor.enabled Specify if a ServiceMonitor will be deployed for Prometheus Operator
 ## @param serviceMonitor.metricRelabelings MetricRelabelConfigs to apply to samples before ingestion
 serviceMonitor:
-  enabled: true
+  enabled: false
   metricRelabelings: []
 #    - action: drop
 #      regex: namedprocess_namegroup_(context_switches_total|major_page_faults_total|minor_page_faults_total|states|threads_wchan|worst_fd_ratio)
